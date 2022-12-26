@@ -1,7 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import navSlice from './slices/navSlice';
+
 
 export const store = configureStore({
-  reducer: {}
+  reducer: {
+    nav: navSlice,
+  }
 })
 
 export type RootState = ReturnType<typeof store.getState>;
