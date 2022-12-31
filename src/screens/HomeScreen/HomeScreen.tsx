@@ -1,16 +1,12 @@
-import { View, SafeAreaView, Image } from 'react-native';
-import { AppIcon } from '../../../assets/icons';
-import { SvgXml } from 'react-native-svg';
-
+import { SafeAreaView } from 'react-native';
+import { NavOptions } from '../../components/NavOptions/NavOptions';
+import Logo from '../../components/Logo/Logo';
 
 export const HomeScreen = () => {
-
-
   return (
-    <SafeAreaView className="h-full bg-white">
-      <View>
-        <SvgXml xml={AppIcon} />
-      </View>
+    <SafeAreaView className="h-full mx-4 mt-8">
+      <Logo />
+      <NavOptions />
     </SafeAreaView>
   );
 };
