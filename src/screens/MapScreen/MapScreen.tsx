@@ -38,20 +38,13 @@ export const MapScreen = () => {
         }}
         className="flex-1"
         mapType="mutedStandard"
-      >
-        <Marker
-          coordinate={{
-            latitude: origin.location.lat,
-            longitude: origin.location.lng,
-          }}
-          title="Origin"
-          description={origin.description}
-        />
-      </Map>
+      />
 
-      <ScrollView className="flex-grow" contentContainerStyle={{ flex: 1 }}>
-        <RideStackNavigator />
-      </ScrollView>
+      {/* <ScrollView className="flex-grow" contentContainerStyle={{ flex: 1 }}> */}
+        <View className='flex-1'>
+          <RideStackNavigator />
+        </View>
+      {/* </ScrollView> */}
     </View>
   );
 };
