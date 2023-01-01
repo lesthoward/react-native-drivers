@@ -80,7 +80,13 @@ export const GoogleAutocompleteComponent = ({
           container: {
             flex: 0,
           },
+          textInput: {
+            color: isError ? 'red' : 'black',
+          },
           ...(extendStyles ? extendStyles : {}),
+        }}
+        textInputProps={{
+          placeholderTextColor: isError ? 'red' : '#ccc',
         }}
         {...props}
       />

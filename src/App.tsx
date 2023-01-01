@@ -18,6 +18,4 @@ export const App = () => {
   );
 };
 
-const styles = StyleSheet.create({});
-
 export default registerRootComponent(App);

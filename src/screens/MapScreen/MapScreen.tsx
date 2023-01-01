@@ -1,6 +1,13 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useEffect } from 'react';
-import { View, Text } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Text,
+  FlatList,
+  SafeAreaView,
+} from 'react-native';
 import { Map } from '../../components/Map/Map';
 import { StackParams } from '../../navigators/StackNativagator';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
@@ -41,9 +48,10 @@ export const MapScreen = () => {
           description={origin.description}
         />
       </Map>
-      <View className="flex-1">
+
+      <ScrollView className="flex-grow" contentContainerStyle={{ flex: 1 }}>
         <RideStackNavigator />
-      </View>
+      </ScrollView>
     </View>
   );
 };
