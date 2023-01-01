@@ -1,15 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Point } from 'react-native-google-places-autocomplete';
 
 export interface NavState {
-  origin: string | null;
+  origin: {
+    location: Point;
+    description: string;
+  } | null;
   destination: string | null;
   travelTimeInformation: null;
+  noOrigin: boolean;
 }
 
 const initialState: NavState = {
   origin: null,
   destination: null,
   travelTimeInformation: null,
+  noOrigin: false,
 };
 
 export const navSlice = createSlice({
@@ -30,10 +36,13 @@ export const navSlice = createSlice({
     ): void => {
       state.travelTimeInformation = action.payload;
     },
+    setNoOrigin: (state, action: PayloadAction<NavState['noOrigin']>): void => {
+      state.noOrigin = action.payload;
+    },
   },
 });
 
-export const { setDestination, setOrigin, setTravelTimeInformation } =
+export const { setDestination, setOrigin, setTravelTimeInformation, setNoOrigin } =
   navSlice.actions;
 
 export default navSlice.reducer;

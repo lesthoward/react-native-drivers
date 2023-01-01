@@ -1,16 +1,17 @@
-import { Car, Food } from '../../../assets/icons';
+import { Car, Food, Sausage, Taxi } from '../../../assets/icons';
+import { NavOption } from '../../types/app';
 
 export const NavOptionsData: NavOption[] = [
   {
     id: '1',
     title: 'Get a ride',
-    icon: Car,
-    screen: 'MapScreen',
+    icon: Taxi,
+    screen: 'Map',
   },
   {
     id: '2',
     title: 'Order food',
-    icon: Food,
-    screen: 'EatsScreen',
-  }
+    icon: Sausage,
+    screen: 'Home',
+  },
 ];
