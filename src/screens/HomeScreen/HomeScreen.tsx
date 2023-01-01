@@ -1,4 +1,4 @@
-import { SafeAreaView, Animated } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { NavOptions } from '../../components/NavOptions/NavOptions';
 import { GOOGLE_MAPS_KEY } from '@env';
 import {
@@ -6,14 +6,15 @@ import {
   GooglePlaceDetail,
 } from 'react-native-google-places-autocomplete';
 import Logo from '../../components/Logo/Logo';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { setDestination, setOrigin } from '../../redux/slices/navSlice';
 import { GoogleAutocompleteComponent } from '../../components/GoogleAutocompleteComponent/GoogleAutocompleteComponent';
 
-
-
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
+  const {
+    nav: { noOrigin },
+  } = useAppSelector((state) => state);
   const googleServiceHandler = (
     data: GooglePlaceData,
     details: GooglePlaceDetail | null
@@ -34,12 +35,13 @@ export const HomeScreen = () => {
 
       <GoogleAutocompleteComponent
         placeholder="Where from?"
-        query={{ key: GOOGLE_MAPS_KEY, language: 'en' }}
         nearbyPlacesAPI="GooglePlacesSearch"
         debounce={400}
+        query={{ key: GOOGLE_MAPS_KEY, language: 'en' }}
         enablePoweredByContainer={false}
         fetchDetails={true}
         onPress={googleServiceHandler}
+        isError={noOrigin}
       />
       <NavOptions />
     </SafeAreaView>

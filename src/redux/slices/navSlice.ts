@@ -6,7 +6,10 @@ export interface NavState {
     location: Point;
     description: string;
   } | null;
-  destination: string | null;
+  destination: {
+    location: Point;
+    description: string;
+  } | null;
   travelTimeInformation: null;
   noOrigin: boolean;
 }
@@ -42,7 +45,11 @@ export const navSlice = createSlice({
   },
 });
 
-export const { setDestination, setOrigin, setTravelTimeInformation, setNoOrigin } =
-  navSlice.actions;
+export const {
+  setDestination,
+  setOrigin,
+  setTravelTimeInformation,
+  setNoOrigin,
+} = navSlice.actions;
 
 export default navSlice.reducer;

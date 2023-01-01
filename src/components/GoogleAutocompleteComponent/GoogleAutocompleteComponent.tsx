@@ -7,12 +7,17 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect } from 'react';
 import { setNoOrigin } from '../../redux/slices/navSlice';
 
-type GoogleAutocompleteComponentProps = GooglePlacesAutocompleteProps;
+interface GoogleAutocompleteComponentProps
+  extends GooglePlacesAutocompleteProps {
+  extendStyles?: GoogleAutocompleteComponentProps['styles'];
+  isError?: boolean;
+}
 
-export const GoogleAutocompleteComponent = (
-  props: GoogleAutocompleteComponentProps
-) => {
-  const { noOrigin } = useAppSelector((state) => state.nav);
+export const GoogleAutocompleteComponent = ({
+  isError,
+  extendStyles,
+  ...props
+}: GoogleAutocompleteComponentProps) => {
   const dispatch = useAppDispatch();
   let terminateAnimation = 5;
   let animatedValue = new Animated.Value(0);
@@ -55,10 +60,10 @@ export const GoogleAutocompleteComponent = (
   };
 
   useEffect(() => {
-    if (noOrigin) {
+    if (isError) {
       animate();
     }
-  }, [noOrigin]);
+  }, [isError]);
 
   const animatedStyles: Animated.WithAnimatedObject<ViewStyle> = {
     transform: [
@@ -75,6 +80,7 @@ export const GoogleAutocompleteComponent = (
           container: {
             flex: 0,
           },
+          ...(extendStyles ? extendStyles : {}),
         }}
         {...props}
       />

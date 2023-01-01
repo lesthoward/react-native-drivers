@@ -5,7 +5,7 @@ import { Map } from '../../components/Map/Map';
 import { StackParams } from '../../navigators/StackNativagator';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { Marker } from 'react-native-maps';
-import { setNoOrigin } from '../../redux/slices/navSlice';
+import { RideStackNavigator } from '../../navigators/RideStackNavigator';
 
 export const MapScreen = () => {
   const { origin, noOrigin } = useAppSelector((state) => state.nav);
@@ -19,7 +19,6 @@ export const MapScreen = () => {
   }, [origin]);
 
   if (!origin) return null;
-
 
   return (
     <View className="flex-1">
@@ -42,7 +41,9 @@ export const MapScreen = () => {
           description={origin.description}
         />
       </Map>
-      <View className="flex-1"></View>
+      <View className="flex-1">
+        <RideStackNavigator />
+      </View>
     </View>
   );
 };
