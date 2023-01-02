@@ -64,11 +64,18 @@ export const Map = (props: MapProps) => {
 
   useEffect(() => {
     if (mapRef.current && origin && destination) {
-      mapRef.current.fitToSuppliedMarkers(['origin', 'destination'], {
-        edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
-      });
+      mapRef.current.fitToCoordinates([
+        {
+          latitude: origin.location.lat,
+          longitude: origin.location.lng,
+        },
+        {
+          latitude: destination.location.lat,
+          longitude: destination.location.lng,
+        },
+      ]);
     }
-  }, [origin, destination]);
+  }, [origin, destination, mapRef]);
 
   useEffect(() => {
     if (!origin || !destination) return;
