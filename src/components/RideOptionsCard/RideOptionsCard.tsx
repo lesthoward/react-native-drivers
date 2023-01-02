@@ -43,6 +43,14 @@ export const RideOptionsCard = () => {
   const navigate = useNavigation<NavigationProp<RideStackParams>>();
   const [pickedService, setPickedService] = useState<string>();
   const { travelTimeInformation } = useAppSelector((state) => state.nav);
+  useEffect(() => {
+    if (!travelTimeInformation || !travelTimeInformation.duration || !travelTimeInformation.distance) {
+      navigate.navigate('Destination');
+      console.error('No travel time information');
+    }
+  }, [travelTimeInformation]);
+
+  if (!travelTimeInformation || !travelTimeInformation.duration || !travelTimeInformation.distance) return null;
 
   const pickedServiceStyle = (name: string) => {
     if (pickedService === name) {
@@ -58,15 +66,6 @@ export const RideOptionsCard = () => {
   const goBackHandler = () => {
     navigate.goBack();
   };
-
-  useEffect(() => {
-    if (!travelTimeInformation) {
-      navigate.navigate('Destination');
-      console.error('No travel time information');
-    }
-  }, [travelTimeInformation]);
-
-  if (!travelTimeInformation) return null;
 
   const CarItemOption = ({
     index,
@@ -147,9 +146,7 @@ export const RideOptionsCard = () => {
 
       <View>
         <TouchableOpacity className="bg-black py-3 m-3 rounded-full">
-          <Text className="text-center text-white">
-            Choose {pickedService}
-          </Text>
+          <Text className="text-center text-white">Choose {pickedService}</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
