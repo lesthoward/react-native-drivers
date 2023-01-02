@@ -5,7 +5,7 @@ import {
 } from 'react-native-google-places-autocomplete';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect } from 'react';
-import { setNoOrigin } from '../../redux/slices/navSlice';
+import { setRunInputAnimation } from '../../redux/slices/navSlice';
 
 interface GoogleAutocompleteComponentProps
   extends GooglePlacesAutocompleteProps {
@@ -48,7 +48,7 @@ export const GoogleAutocompleteComponent = ({
 
       if (terminateAnimation >= 5) {
         terminateAnimation = 0;
-        dispatch(setNoOrigin(false));
+        dispatch(setRunInputAnimation(false));
       }
     });
 

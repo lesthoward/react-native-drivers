@@ -10,15 +10,25 @@ export interface NavState {
     location: Point;
     description: string;
   } | null;
-  travelTimeInformation: null;
-  noOrigin: boolean;
+  travelTimeInformation: {
+    distance: {
+      text: string;
+      value: number;
+    };
+    duration: {
+      text: string;
+      value: number;
+    };
+    status: string;
+  } | null;
+  runInputAnimation: boolean;
 }
 
 const initialState: NavState = {
   origin: null,
   destination: null,
   travelTimeInformation: null,
-  noOrigin: false,
+  runInputAnimation: false,
 };
 
 export const navSlice = createSlice({
@@ -39,8 +49,8 @@ export const navSlice = createSlice({
     ): void => {
       state.travelTimeInformation = action.payload;
     },
-    setNoOrigin: (state, action: PayloadAction<NavState['noOrigin']>): void => {
-      state.noOrigin = action.payload;
+    setRunInputAnimation: (state, action: PayloadAction<NavState['runInputAnimation']>): void => {
+      state.runInputAnimation = action.payload;
     },
   },
 });
@@ -49,7 +59,7 @@ export const {
   setDestination,
   setOrigin,
   setTravelTimeInformation,
-  setNoOrigin,
+  setRunInputAnimation,
 } = navSlice.actions;
 
 export default navSlice.reducer;

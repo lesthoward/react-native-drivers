@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { registerRootComponent } from 'expo';
-import { StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { store } from '../src/redux/store';
@@ -11,7 +11,12 @@ export const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <SafeAreaProvider>
-          <StackNavigator />
+          <KeyboardAvoidingView
+            className="flex-1"
+            behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+          >
+            <StackNavigator />
+          </KeyboardAvoidingView>
         </SafeAreaProvider>
       </NavigationContainer>
     </Provider>

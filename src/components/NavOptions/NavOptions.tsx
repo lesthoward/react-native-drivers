@@ -6,11 +6,7 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { StackParams } from '../../navigators/StackNativagator';
 import { NavOption } from '../../types/app';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { setNoOrigin } from '../../redux/slices/navSlice';
-
-interface RenderedItemProps {
-  title: string;
-}
+import { setRunInputAnimation } from '../../redux/slices/navSlice';
 
 export const NavOptions = () => {
   const { origin } = useAppSelector((state) => state.nav);
@@ -19,7 +15,7 @@ export const NavOptions = () => {
 
   const navigateToScreenHandler = (route: keyof StackParams) => {
     if (route === 'Map' && !origin) {
-      dispatch(setNoOrigin(true));
+      dispatch(setRunInputAnimation(true));
     }
 
     navigation.navigate(route);
@@ -48,7 +44,7 @@ export const NavOptions = () => {
       renderItem={({ item }) => <RenderedItem {...item} />}
       keyExtractor={({ id }) => id}
       horizontal
-      className="mt-4"
-    ></FlatList>
+      className='flex-1 max-h-60 mt-4'
+    />
   );
 };
